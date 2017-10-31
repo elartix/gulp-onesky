@@ -36,14 +36,14 @@ module.exports = function (opts) {
     if (opts.locales) {
       Object.keys(body).forEach(function (lang) {
         stream.queue(new gutil.File({
-          path: path.join(opts.outputDir, lang.split('-')[0], 'messages.json'),
-          contents: new Buffer(JSON.stringify(body[lang], null, 2))
+          path: path.join(opts.outputDir, /*lang.split('-')[0],*/ lang.split('-')[0]+'.json'),
+          contents: new Buffer(JSON.stringify(body[lang].translation, null, 4))
         }));
       });
     } else {
       stream.queue(new gutil.File({
         path: opts.outputFile,
-        contents: new Buffer(JSON.stringify(body, null, 2))
+        contents: new Buffer(JSON.stringify(body, null, 4))
       }));
     }
 
